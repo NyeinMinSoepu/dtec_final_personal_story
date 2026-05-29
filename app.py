@@ -21,7 +21,8 @@ def load_data():
     df = df.drop(columns=cols_to_drop)
     
     # Strict Date Parsing conversion
-    df['date'] = pd.to_datetime(df['date'], format='%m-%d-%Y', errors='coerce')
+    # df['date'] = pd.to_datetime(df['date'], format='%m-%d-%Y', errors='coerce')
+    df['date'] = pd.to_datetime(df['date'], errors='coerce')
 
     # Sort by actual date chronologically
     df = df.sort_values('date').reset_index(drop=True)
