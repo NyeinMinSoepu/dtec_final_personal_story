@@ -13,15 +13,18 @@ st.set_page_config(
 
 # 2. CACHED DATA PIPELINE 
 @st.cache_data
-@st.cache_data
 def load_data():
     df = pd.read_csv("learningexperience.csv")
     df = df.drop(columns=["id","tasks", "total"])
     
-    # Force pandas to automatically handle mixed date structures safely
-    df['date'] = pd.to_datetime(df['date'], errors='coerce')
+    # Try common formats cleanly before fallback guessing
+    df['date'] = pd.to_datetime(df['date'], errors='coerce', fuzzy=True)
     
-    # Remove rows where dates failed to parse to prevent chart compression
+    # CRITICAL: Eliminate corrupted historical rows (e.g. years 0001, 2001)
+    # This leaves only your true 2025 internship data window
+    df = df[df['date'].dt.year == 2025]
+    
+    # Remove rows where dates completely failed to parse 
     df = df.dropna(subset=['date'])
     
     # Sort dates chronologically so the trend lines connect properly from left to right
@@ -36,7 +39,6 @@ def load_data():
     df['duration'] = (pd.to_timedelta(df['duration']).dt.total_seconds() / 3600).abs()
     df['week'] = df['date'].dt.to_period('W').dt.to_timestamp()
     return df
-
 
 # Initialize Data Setup Runtime
 try:
