@@ -127,7 +127,11 @@ with tab2:
         st.subheader("Daily Productivity, Stress and Enjoyment Over Days")
         "The figures below showcase the stress, working time, and enjoyment over the period 180+ days"
         # Aggregate daily tracking metrics safely
-        daily = df.groupby('date').agg({'duration': 'sum', 'personal_enjoyment': 'mean', 'stress_level': 'mean'}).reset_index()
+        daily = df.groupby('date').agg({
+                'duration': 'sum',
+                'personal_enjoyment': 'mean',
+                'stress_level': 'mean'
+            }).reset_index()
         
         fig2, (ax_t1, ax_t2) = plt.subplots(2, 1, figsize=(12, 8), sharex=True)
         
