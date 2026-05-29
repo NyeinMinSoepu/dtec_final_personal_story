@@ -17,17 +17,16 @@ def load_data():
     df = pd.read_csv("learningexperience.csv")
     df = df.drop(columns=["id","tasks", "total"])
     
-    # Try common formats cleanly before fallback guessing
-    df['date'] = pd.to_datetime(df['date'], errors='coerce', fuzzy=True)
+    # 1. Parse dates dynamically without rigid structure parameters
+    df['date'] = pd.to_datetime(df['date'], errors='coerce')
     
-    # CRITICAL: Eliminate corrupted historical rows (e.g. years 0001, 2001)
-    # This leaves only your true 2025 internship data window
-    df = df[df['date'].dt.year == 2025]
-    
-    # Remove rows where dates completely failed to parse 
+    # 2. Clean up parsing failures before applying datetime operations
     df = df.dropna(subset=['date'])
     
-    # Sort dates chronologically so the trend lines connect properly from left to right
+    # 3. CRITICAL FILTER: Drop historical rows (e.g. 0001, 2001) that smash your axis
+    df = df[df['date'].dt.year == 2025]
+    
+    # 4. Sort chronological sequences properly
     df = df.sort_values('date').reset_index(drop=True)
 
     start_dt = pd.to_datetime(df['start'], format='%H:%M', errors='coerce')
