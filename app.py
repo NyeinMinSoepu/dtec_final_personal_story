@@ -14,7 +14,12 @@ st.set_page_config(
 def load_data():
     df = pd.read_csv("learningexperience.csv")
     df = df.drop(columns=["id","tasks", "total"])
-    df['date'] = pd.to_datetime(df['date'], format='%m-%d-%Y', errors='coerce')
+    
+    # FIX: Let pandas automatically infer the correct date format 
+    df['date'] = pd.to_datetime(df['date'], errors='coerce')
+    
+    # Drop rows where the date couldn't be parsed to avoid plotting corruption
+    df = df.dropna(subset=['date'])
 
     start_dt = pd.to_datetime(df['start'], format='%H:%M', errors='coerce')
     end_dt = pd.to_datetime(df['end'], format='%H:%M', errors='coerce')
@@ -23,6 +28,10 @@ def load_data():
     df['start'] = start_dt.dt.time
     df['end'] = end_dt.dt.time
     df['duration'] = (pd.to_timedelta(df['duration']).dt.total_seconds() / 3600).abs()
+    
+    # Ensure sorting so line plots connect chronologically
+    df = df.sort_values('date')
+    
     df['week'] = df['date'].dt.to_period('W').dt.to_timestamp()
     return df
 
