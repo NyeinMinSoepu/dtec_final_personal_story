@@ -98,7 +98,7 @@ with tab1:
     melted_roi['Metric'] = melted_roi['Metric'].replace({'personal_enjoyment': 'Enjoyment', 'stress_level': 'Stress Level'})
 
 
-sns.barplot(x='Score', y='task_cat', hue='Metric', data=melted_roi, ax=ax2, palette={'Enjoyment': '#2ecc71', 'Stress Level': '#e74c3c'}
+    sns.barplot(x='Score', y='task_cat', hue='Metric', data=melted_roi, ax=ax2, palette={'Enjoyment': '#2ecc71', 'Stress Level': '#e74c3c'}
     )
     ax2.set_title("The Emotional Return on Investment (ROI)", fontsize=14, fontweight='bold', pad=15)
     ax2.set_xlabel("Average Score (1 - 10)", fontsize=12)
