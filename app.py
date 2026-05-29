@@ -13,29 +13,30 @@ st.set_page_config(
 
 # 2. CACHED DATA PIPELINE 
 @st.cache_data
+@st.cache_data
 def load_data():
     df = pd.read_csv("learningexperience.csv")
+    df = df.drop(columns=["id","tasks", "total"])
     
-    # Standard clean up dropping irrelevant tracker metrics safely
-    cols_to_drop = [c for c in ["id", "tasks", "total"] if c in df.columns]
-    df = df.drop(columns=cols_to_drop)
+    # Force pandas to automatically handle mixed date structures safely
+    df['date'] = pd.to_datetime(df['date'], errors='coerce')
     
-    # Strict Date Parsing conversion
-    df['date'] = pd.to_datetime(df['date'], format='%m-%d-%Y', errors='coerce')
-
-    # Sort by actual date chronologically
+    # Remove rows where dates failed to parse to prevent chart compression
+    df = df.dropna(subset=['date'])
+    
+    # Sort dates chronologically so the trend lines connect properly from left to right
     df = df.sort_values('date').reset_index(drop=True)
 
-    # Decimal Duration Calculation (Hours spent)
     start_dt = pd.to_datetime(df['start'], format='%H:%M', errors='coerce')
     end_dt = pd.to_datetime(df['end'], format='%H:%M', errors='coerce')
-    df['duration'] = ((end_dt - start_dt).dt.total_seconds() / 3600).abs()
+    df['duration'] = end_dt - start_dt
     
-    # Map explicit string/categorical component tags back if needed
     df['start'] = start_dt.dt.time
     df['end'] = end_dt.dt.time
-
+    df['duration'] = (pd.to_timedelta(df['duration']).dt.total_seconds() / 3600).abs()
+    df['week'] = df['date'].dt.to_period('W').dt.to_timestamp()
     return df
+
 
 # Initialize Data Setup Runtime
 try:
