@@ -124,43 +124,64 @@ with tab1:
 # TAB 2: TIME-SERIES RESPONSIVE GRAPH ENGINE
 # ==========================================
 with tab2:
+    # if time_granularity == "Days":
+    #     st.subheader("Daily Productivity, Stress and Enjoyment Over Days")
+    #     "The figures below showcase the stress, working time, and enjoyment over the period 180+ days"
+    #     # Aggregate daily tracking metrics safely
+    #     daily = df.groupby('date').agg({'duration': 'sum', 'personal_enjoyment': 'mean', 'stress_level': 'mean'}).reset_index()
+        
+    #     fig2, (ax_t1, ax_t2) = plt.subplots(2, 1, figsize=(12, 8), sharex=True)
+        
+    #     # Sub-Graph A: Workload Flow
+    #     ax_t1.plot(daily['date'], daily['duration'], color='#8e44ad', marker='o', linewidth=2, label='Total Hours')
+    #     ax_t1.fill_between(daily['date'], daily['duration'], color='#8e44ad', alpha=0.1)
+    #     ax_t1.set_title("The Chronological Journey: Daily Workload & Well-being Trends", fontsize=14, fontweight='bold', pad=10)
+    #     ax_t1.set_ylabel("Hours Worked / Day", fontsize=11)
+    #     ax_t1.grid(True, linestyle='--', alpha=0.5)
+        
+    #     # Sub-Graph B: Sanity Fluctuation Tracker 
+    #     ax_t2.plot(daily['date'], daily['personal_enjoyment'], color='#2ecc71', marker='o', linewidth=2, label='Average Enjoyment')
+    #     ax_t2.plot(daily['date'], daily['stress_level'], color='#e74c3c', marker='x', linestyle='--', linewidth=2, label='Average Stress')
+    #     ax_t2.set_ylabel("Metric Score (1 - 10)", fontsize=11)
+    #     ax_t2.set_xlabel("Date", fontsize=11)
+    #     ax_t2.set_ylim(1, 10)
+    #     ax_t2.grid(True, linestyle='--', alpha=0.5)
+    #     ax_t2.legend(loc='upper left', frameon=True, facecolor='white')
+        
+    #     fig2.autofmt_xdate()
+    #     plt.tight_layout()
+    #     st.pyplot(fig2)
+        
+    #     # 📝 TYPE YOUR DAILY PLOT EXPLANATION INSIDE THE TRIPLE QUOTES BELOW:
+    #     st.markdown("#### Daily Timeline Insights")
+    #     st.markdown("""
+    #     Following is the daily trend of the total working Hours, average Stress, and Enjoyment of life:
+    #     - I can see that the working time tends to flactuate a little bit in the early days of August, Ater Sep, Early Oct, and later Dec.
+    #     - For the enjoyment the relationship is that the later end of Sep, the middle periods of October, and November are least stressful times. 
+    #     - I personally feel that the stress and the conditions and working hours have a bit of connection as it sometimes longer working hours cause burnouts, but it is more of a separate issue than the direct relationship.
+    #     """)
+
+    with tab2:
     if time_granularity == "Days":
         st.subheader("Daily Productivity, Stress and Enjoyment Over Days")
-        "The figures below showcase the stress, working time, and enjoyment over the period 180+ days"
-        # Aggregate daily tracking metrics safely
-        daily = df.groupby('date').agg({'duration': 'sum', 'personal_enjoyment': 'mean', 'stress_level': 'mean'}).reset_index()
+        st.write("The figures below showcase the stress, working time, and enjoyment over the period 180+ days")
         
-        fig2, (ax_t1, ax_t2) = plt.subplots(2, 1, figsize=(12, 8), sharex=True)
+        # --- DISPLAY THE STATIC IMAGE INSTEAD OF PLOTTING ---
+        try:
+            # Looks for 'image.jpeg' in your root project folder
+            st.image("image.jpeg", use_container_width=True)
+        except Exception as e:
+            st.error("Could not find 'image.jpeg' in your folder. Make sure the filename matches perfectly!")
         
-        # Sub-Graph A: Workload Flow
-        ax_t1.plot(daily['date'], daily['duration'], color='#8e44ad', marker='o', linewidth=2, label='Total Hours')
-        ax_t1.fill_between(daily['date'], daily['duration'], color='#8e44ad', alpha=0.1)
-        ax_t1.set_title("The Chronological Journey: Daily Workload & Well-being Trends", fontsize=14, fontweight='bold', pad=10)
-        ax_t1.set_ylabel("Hours Worked / Day", fontsize=11)
-        ax_t1.grid(True, linestyle='--', alpha=0.5)
-        
-        # Sub-Graph B: Sanity Fluctuation Tracker 
-        ax_t2.plot(daily['date'], daily['personal_enjoyment'], color='#2ecc71', marker='o', linewidth=2, label='Average Enjoyment')
-        ax_t2.plot(daily['date'], daily['stress_level'], color='#e74c3c', marker='x', linestyle='--', linewidth=2, label='Average Stress')
-        ax_t2.set_ylabel("Metric Score (1 - 10)", fontsize=11)
-        ax_t2.set_xlabel("Date", fontsize=11)
-        ax_t2.set_ylim(1, 10)
-        ax_t2.grid(True, linestyle='--', alpha=0.5)
-        ax_t2.legend(loc='upper left', frameon=True, facecolor='white')
-        
-        fig2.autofmt_xdate()
-        plt.tight_layout()
-        st.pyplot(fig2)
-        
-        # 📝 TYPE YOUR DAILY PLOT EXPLANATION INSIDE THE TRIPLE QUOTES BELOW:
+        # 📝 DAILY PLOT EXPLANATION
         st.markdown("#### Daily Timeline Insights")
         st.markdown("""
         Following is the daily trend of the total working Hours, average Stress, and Enjoyment of life:
-        - I can see that the working time tends to flactuate a little bit in the early days of August, Ater Sep, Early Oct, and later Dec.
+        - I can see that the working time tends to fluctuate a little bit in the early days of August, after Sep, Early Oct, and later Dec.
         - For the enjoyment the relationship is that the later end of Sep, the middle periods of October, and November are least stressful times. 
         - I personally feel that the stress and the conditions and working hours have a bit of connection as it sometimes longer working hours cause burnouts, but it is more of a separate issue than the direct relationship.
         """)
-
+        
     else:
         st.subheader("Daily Productivity, Stress and Enjoyment Over Weeks")
         "The picures below shows the sum for each week of stress, daily working time, and enjoyment over the period of six months."
