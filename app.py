@@ -123,7 +123,7 @@ with tab1:
     
     for p in ax1.patches:
         ax1.annotate(f"{p.get_width():.1f} hrs", (p.get_width() + 0.1, p.get_y() + p.get_height()/2), va='center', fontweight='bold', fontsize=24)
-
+    st.space("large") 
     # Plot B: Emotional ROI Breakdown Metrics
     roi = df.groupby('task_cat')[['personal_enjoyment', 'stress_level']].mean().reset_index()
     melted_roi = roi.melt(id_vars='task_cat', var_name='Metric', value_name='Score')
