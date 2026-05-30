@@ -135,7 +135,10 @@ with tab1:
     ax2.set_xlabel("Average Score (1 - 10)", fontsize=12)
     ax2.set_xlim(0, 10)
     ax2.set_ylabel("")
-    ax2.legend(loc='lower right', frameon=True, facecolor='white')
+    ax2.tick_params(axis='y', labelsize=22)  # Brought back and enlarged category text
+    ax2.tick_params(axis='x', labelsize=16)  # Makes bottom numbers readable
+    
+    ax2.legend(loc='lower right', frameon=True, facecolor='white', fontsize=20)
 
     plt.tight_layout()
     st.pyplot(fig1)
