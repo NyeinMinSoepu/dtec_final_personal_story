@@ -91,7 +91,15 @@ st.write("---")
 
 tab1, tab2 = st.tabs(["Task Analysis", "Time-Series Trends"])
 
-
+# set global size
+plt.rcParams.update({
+    'font.size': 16,          # Sets default font size for text, labels, and legends
+    'axes.labelsize': 16,     # Font size for the x and y labels
+    'axes.titlesize': 18,     # Font size for the axes title
+    'xtick.labelsize': 14,    # Font size for the x-axis tick labels
+    'ytick.labelsize': 14,    # Font size for the y-axis tick labels
+    'legend.fontsize': 14     # Font size for the legend
+})
 # ==========================================
 # TAB 1: ORIGINAL CATEGORIZATION BAR PLOTS
 # ==========================================
