@@ -119,10 +119,10 @@ with tab1:
     ax1.set_xlabel("Total Hours Spent", fontsize=36)
     ax1.set_ylabel("", fontsize=36)
     ax1.tick_params(axis='y', labelsize=22)  # Makes category text large
-    ax1.tick_params(axis='x', labelsize=16)  # Makes bottom numbers readable
+    ax1.tick_params(axis='x', labelsize=22)  # Makes bottom numbers readable
     
     for p in ax1.patches:
-        ax1.annotate(f"{p.get_width():.1f} hrs", (p.get_width() + 0.1, p.get_y() + p.get_height()/2), va='center', fontweight='bold')
+        ax1.annotate(f"{p.get_width():.1f} hrs", (p.get_width() + 0.1, p.get_y() + p.get_height()/2), va='center', fontweight='bold', fontsize=24)
 
     # Plot B: Emotional ROI Breakdown Metrics
     roi = df.groupby('task_cat')[['personal_enjoyment', 'stress_level']].mean().reset_index()
@@ -136,7 +136,7 @@ with tab1:
     ax2.set_xlim(0, 10)
     ax2.set_ylabel("")
     ax2.tick_params(axis='y', labelsize=22)  # Brought back and enlarged category text
-    ax2.tick_params(axis='x', labelsize=16)  # Makes bottom numbers readable
+    ax2.tick_params(axis='x', labelsize=22)  # Makes bottom numbers readable
     
     ax2.legend(loc='lower right', frameon=True, facecolor='white', fontsize=20)
 
