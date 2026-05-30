@@ -91,15 +91,6 @@ st.write("---")
 
 tab1, tab2 = st.tabs(["Task Analysis", "Time-Series Trends"])
 
-# set global size
-plt.rcParams.update({
-    'font.size': 48,          # Sets default font size for text, labels, and legends
-    'axes.labelsize': 48,     # Font size for the x and y labels
-    'axes.titlesize': 54,     # Font size for the axes title
-    'xtick.labelsize': 42,    # Font size for the x-axis tick labels
-    'ytick.labelsize': 42,    # Font size for the y-axis tick labels
-    'legend.fontsize': 42     # Font size for the legend
-})
 # ==========================================
 # TAB 1: ORIGINAL CATEGORIZATION BAR PLOTS
 # ==========================================
@@ -123,7 +114,7 @@ with tab1:
     
     for p in ax1.patches:
         ax1.annotate(f"{p.get_width():.1f} hrs", (p.get_width() + 0.1, p.get_y() + p.get_height()/2), va='center', fontweight='bold', fontsize=24)
-    st.space("large") 
+        
     # Plot B: Emotional ROI Breakdown Metrics
     roi = df.groupby('task_cat')[['personal_enjoyment', 'stress_level']].mean().reset_index()
     melted_roi = roi.melt(id_vars='task_cat', var_name='Metric', value_name='Score')
