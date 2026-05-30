@@ -116,10 +116,10 @@ with tab1:
     time_spent = df.groupby('task_cat')['duration'].sum().sort_values(ascending=False).reset_index()
     sns.barplot(x='duration', y='task_cat', data=time_spent, ax=ax1, palette="Blues_r", hue='task_cat', legend=False)
     ax1.set_title("The Time Investment (Total Hours)", fontsize=42, fontweight='bold', pad=50)
-    ax1.set_xlabel("Total Hours Spent", fontsize=36)
-    ax1.set_ylabel("", fontsize=36)
+    ax1.set_xlabel("Total Hours Spent", fontsize=30)
+    ax1.set_ylabel("", fontsize=30)
     ax1.tick_params(axis='y', labelsize=22)  # Makes category text large
-    ax1.tick_params(axis='x', labelsize=22)  # Makes bottom numbers readable
+    ax1.tick_params(axis='x', labelsize=30)  # Makes bottom numbers readable
     
     for p in ax1.patches:
         ax1.annotate(f"{p.get_width():.1f} hrs", (p.get_width() + 0.1, p.get_y() + p.get_height()/2), va='center', fontweight='bold', fontsize=24)
@@ -134,11 +134,11 @@ with tab1:
     ax2.set_title("The Emotional Return on Investment (ROI)", fontsize=42, fontweight='bold', pad=15)
     ax2.set_xlabel("Average Score (1 - 10)", fontsize=12)
     ax2.set_xlim(0, 10)
-    ax2.set_ylabel("")
+    ax2.set_ylabel("", fontsize=30)
     ax2.tick_params(axis='y', labelsize=22)  # Brought back and enlarged category text
-    ax2.tick_params(axis='x', labelsize=22)  # Makes bottom numbers readable
+    ax2.tick_params(axis='x', labelsize=30)  # Makes bottom numbers readable
     
-    ax2.legend(loc='lower right', frameon=True, facecolor='white', fontsize=20)
+    ax2.legend(loc='lower right', frameon=True, facecolor='white', fontsize=25)
 
     plt.tight_layout()
     st.pyplot(fig1)
