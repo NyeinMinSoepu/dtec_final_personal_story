@@ -118,6 +118,8 @@ with tab1:
     ax1.set_title("The Time Investment (Total Hours)", fontsize=42, fontweight='bold', pad=50)
     ax1.set_xlabel("Total Hours Spent", fontsize=36)
     ax1.set_ylabel("", fontsize=36)
+    ax1.tick_params(axis='y', labelsize=22)  # Makes category text large
+    ax1.tick_params(axis='x', labelsize=16)  # Makes bottom numbers readable
     
     for p in ax1.patches:
         ax1.annotate(f"{p.get_width():.1f} hrs", (p.get_width() + 0.1, p.get_y() + p.get_height()/2), va='center', fontweight='bold')
