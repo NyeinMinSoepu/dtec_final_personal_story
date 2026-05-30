@@ -110,7 +110,7 @@ with tab1:
     "This is mainly due to the the opportunities given by Parami, and the mentors and people that I have met there."
     "Please, take a look at what I have done to understand my journey through this learning."
     sns.set_theme(style="whitegrid")
-    fig1, (ax1, ax2) = plt.subplots(1, 2, figsize=(32, 12))
+    fig1, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 64))
 
     # Plot A: Total Categorical Hours Weight
     time_spent = df.groupby('task_cat')['duration'].sum().sort_values(ascending=False).reset_index()
