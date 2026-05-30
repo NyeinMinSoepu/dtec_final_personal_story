@@ -115,9 +115,9 @@ with tab1:
     # Plot A: Total Categorical Hours Weight
     time_spent = df.groupby('task_cat')['duration'].sum().sort_values(ascending=False).reset_index()
     sns.barplot(x='duration', y='task_cat', data=time_spent, ax=ax1, palette="Blues_r", hue='task_cat', legend=False)
-    ax1.set_title("The Time Investment (Total Hours)", fontsize=14, fontweight='bold', pad=50)
-    ax1.set_xlabel("Total Hours Spent", fontsize=12)
-    ax1.set_ylabel("", fontsize=12)
+    ax1.set_title("The Time Investment (Total Hours)", fontsize=42, fontweight='bold', pad=50)
+    ax1.set_xlabel("Total Hours Spent", fontsize=36)
+    ax1.set_ylabel("", fontsize=36)
     
     for p in ax1.patches:
         ax1.annotate(f"{p.get_width():.1f} hrs", (p.get_width() + 0.1, p.get_y() + p.get_height()/2), va='center', fontweight='bold')
@@ -129,7 +129,7 @@ with tab1:
 
     sns.barplot(x='Score', y='task_cat', hue='Metric', data=melted_roi, ax=ax2, palette={'Enjoyment': '#2ecc71', 'Stress Level': '#e74c3c'}
     )
-    ax2.set_title("The Emotional Return on Investment (ROI)", fontsize=14, fontweight='bold', pad=15)
+    ax2.set_title("The Emotional Return on Investment (ROI)", fontsize=42, fontweight='bold', pad=15)
     ax2.set_xlabel("Average Score (1 - 10)", fontsize=12)
     ax2.set_xlim(0, 10)
     ax2.set_ylabel("")
