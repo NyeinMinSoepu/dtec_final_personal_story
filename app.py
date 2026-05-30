@@ -118,7 +118,7 @@ with tab1:
     ax1.set_title("The Time Investment (Total Hours)", fontsize=42, fontweight='bold', pad=50)
     ax1.set_xlabel("Total Hours Spent", fontsize=30)
     ax1.set_ylabel("", fontsize=30)
-    ax1.tick_params(axis='y', labelsize=22)  # Makes category text large
+    ax1.tick_params(axis='y', labelsize=30)  # Makes category text large
     ax1.tick_params(axis='x', labelsize=30)  # Makes bottom numbers readable
     
     for p in ax1.patches:
@@ -132,10 +132,10 @@ with tab1:
     sns.barplot(x='Score', y='task_cat', hue='Metric', data=melted_roi, ax=ax2, palette={'Enjoyment': '#2ecc71', 'Stress Level': '#e74c3c'}
     )
     ax2.set_title("The Emotional Return on Investment (ROI)", fontsize=42, fontweight='bold', pad=15)
-    ax2.set_xlabel("Average Score (1 - 10)", fontsize=12)
+    ax2.set_xlabel("Average Score (1 - 10)", fontsize=30)
     ax2.set_xlim(0, 10)
     ax2.set_ylabel("", fontsize=30)
-    ax2.tick_params(axis='y', labelsize=22)  # Brought back and enlarged category text
+    ax2.tick_params(axis='y', labelsize=30)  # Brought back and enlarged category text
     ax2.tick_params(axis='x', labelsize=30)  # Makes bottom numbers readable
     
     ax2.legend(loc='lower right', frameon=True, facecolor='white', fontsize=25)
