@@ -69,6 +69,26 @@ with st.sidebar:
 # 4. MAIN CONTAINER ENGINE: TAB SEPARATION CONTROL
 st.title(" Productivity Dashboard")
 
+st.subheader("📈 Internship Performance Summary")
+
+total_hours = df['duration'].sum()
+avg_enjoyment = df['personal_enjoyment'].mean()
+avg_stress = df['stress_level'].mean()
+total_days = df['date'].nunique()
+
+m1, m2, m3, m4 = st.columns(4)
+with m1:
+    st.metric(label="⏳ Total Hours Logged", value=f"{total_hours:.1f} hrs")
+with m2:
+    st.metric(label="😊 Avg Personal Enjoyment", value=f"{avg_enjoyment:.1f} / 10")
+with m3:
+    st.metric(label="😓 Avg Stress Level", value=f"{avg_stress:.1f} / 10")
+with m4:
+    st.metric(label="📅 Active Tracking Days", value=f"{total_days} Days")
+
+st.write("---")
+# --------------------------------------
+
 tab1, tab2 = st.tabs(["Task Analysis", "Time-Series Trends"])
 
 
